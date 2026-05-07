@@ -1,25 +1,19 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RentaBike</title>
-
   <link rel="stylesheet" href="style.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <div id="desktop-warning">
   <div class="desktop-card">
     <h1>📱 Mobile Only</h1>
-    <p>
-      RentaBike prototype is designed for phones only.
-    </p>
+    <p>RentaBike prototype is designed for phones only.</p>
   </div>
 </div>
 
@@ -31,65 +25,97 @@
     <div class="topbar">
       <div>
         <h1>RentaBike</h1>
-        <p>Energy Park Bicycle Rental</p>
+        <p>Energy Park · Staff View</p>
       </div>
-
       <div class="time-box">
         <span id="liveTime">2:34 PM</span>
       </div>
     </div>
 
-    <div class="hero-card">
-      <div>
-        <h2>Bike Activity</h2>
-        <p>Monitor rentals in real-time</p>
+    <!-- STAT BARS -->
+    <div class="stat-bars">
+      <div class="stat-bar available-bar">
+        <div class="stat-label">
+          <span class="stat-dot green"></span>
+          <span>Available</span>
+        </div>
+        <div class="stat-count" id="statAvailable">1</div>
+        <div class="stat-track">
+          <div class="stat-fill green-fill" id="fillAvailable" style="width:33%"></div>
+        </div>
       </div>
-
-      <button class="scan-btn" onclick="goTo('scanner')">
-        Scan QR
-      </button>
+      <div class="stat-bar rented-bar">
+        <div class="stat-label">
+          <span class="stat-dot blue"></span>
+          <span>Rented</span>
+        </div>
+        <div class="stat-count" id="statRented">1</div>
+        <div class="stat-track">
+          <div class="stat-fill blue-fill" id="fillRented" style="width:33%"></div>
+        </div>
+      </div>
     </div>
 
+    <!-- BIKE LIST -->
     <div class="section-title">
       <h3>Bike Inventory</h3>
     </div>
 
     <div class="bike-list">
-
       <div class="bike-card" onclick="openModal('available')">
-        <div>
-          <h4>Bike 101</h4>
-          <p>Available for rental</p>
+        <div class="bike-info">
+          <div class="bike-icon-wrap available-icon">🚲</div>
+          <div>
+            <h4>Bike 101</h4>
+            <p>Available for rental</p>
+          </div>
         </div>
-
-        <span class="status available">
-          Available
-        </span>
+        <span class="status available">Available</span>
       </div>
 
       <div class="bike-card" onclick="openModal('rented')">
-        <div>
-          <h4>Bike 102</h4>
-          <p>Borrowed by Ashley</p>
+        <div class="bike-info">
+          <div class="bike-icon-wrap rented-icon">🚲</div>
+          <div>
+            <h4>Bike 102</h4>
+            <p>Borrowed by Ashley</p>
+          </div>
         </div>
-
-        <span class="status rented">
-          Rented
-        </span>
+        <span class="status rented">Rented</span>
       </div>
 
       <div class="bike-card" onclick="openModal('maintenance')">
-        <div>
-          <h4>Bike 103</h4>
-          <p>Needs maintenance</p>
+        <div class="bike-info">
+          <div class="bike-icon-wrap maintenance-icon">🚲</div>
+          <div>
+            <h4>Bike 103</h4>
+            <p>Needs maintenance</p>
+          </div>
         </div>
-
-        <span class="status maintenance">
-          Repair
-        </span>
+        <span class="status maintenance">Repair</span>
       </div>
-
     </div>
+
+    <!-- BOTTOM NAV SPACER -->
+    <div style="height:100px;"></div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="goTo('inventory')">
+        <span class="nav-icon">📋</span>
+        <span>Inventory</span>
+      </button>
+      <button class="nav-btn qr-center" onclick="goTo('scanner')">
+        <div class="qr-circle">
+          <span class="qr-icon">⬛</span>
+        </div>
+        <span>Scan QR</span>
+      </button>
+      <button class="nav-btn" onclick="goTo('report')">
+        <span class="nav-icon">❗</span>
+        <span>Report</span>
+      </button>
+    </nav>
 
   </section>
 
@@ -102,15 +128,11 @@
     </div>
 
     <div class="scanner">
-
       <div class="scan-line"></div>
-
       <div class="scanner-box">
         <div class="scanner-frame"></div>
       </div>
-
       <p>Point camera at bicycle QR code</p>
-
     </div>
 
     <button class="primary-btn" onclick="simulateScan()">
@@ -119,7 +141,159 @@
 
   </section>
 
-  <!-- FORM -->
+  <!-- INVENTORY -->
+  <section class="screen" id="inventory">
+
+    <div class="header">
+      <button onclick="goTo('home')">←</button>
+      <h2>Inventory</h2>
+    </div>
+
+    <div class="inv-category">
+      <div class="inv-cat-header">
+        <span class="cat-badge road">🚴</span>
+        <h3>Road Bikes</h3>
+        <span class="cat-count">3 units</span>
+      </div>
+      <div class="inv-list">
+        <div class="inv-row">
+          <span>RB-001</span>
+          <span class="status available">Available</span>
+        </div>
+        <div class="inv-row">
+          <span>RB-002</span>
+          <span class="status rented">Rented</span>
+        </div>
+        <div class="inv-row">
+          <span>RB-003</span>
+          <span class="status maintenance">Repair</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="inv-category">
+      <div class="inv-cat-header">
+        <span class="cat-badge sidecar">🛺</span>
+        <h3>Sidecar Bikes</h3>
+        <span class="cat-count">2 units</span>
+      </div>
+      <div class="inv-list">
+        <div class="inv-row">
+          <span>SC-001</span>
+          <span class="status available">Available</span>
+        </div>
+        <div class="inv-row">
+          <span>SC-002</span>
+          <span class="status available">Available</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="inv-category">
+      <div class="inv-cat-header">
+        <span class="cat-badge kids">🚲</span>
+        <h3>Children's Bikes</h3>
+        <span class="cat-count">4 units</span>
+      </div>
+      <div class="inv-list">
+        <div class="inv-row">
+          <span>CB-001</span>
+          <span class="status available">Available</span>
+        </div>
+        <div class="inv-row">
+          <span>CB-002</span>
+          <span class="status rented">Rented</span>
+        </div>
+        <div class="inv-row">
+          <span>CB-003</span>
+          <span class="status available">Available</span>
+        </div>
+        <div class="inv-row">
+          <span>CB-004</span>
+          <span class="status maintenance">Repair</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:30px;"></div>
+
+  </section>
+
+  <!-- REPORT -->
+  <section class="screen" id="report">
+
+    <div class="header">
+      <button onclick="goTo('home')">←</button>
+      <h2>Report Issue</h2>
+    </div>
+
+    <div class="report-types">
+
+      <div class="report-card" onclick="openReportForm('damage')">
+        <div class="report-icon dmg">🔧</div>
+        <div>
+          <h4>Report Damage</h4>
+          <p>Flat tire, broken part, etc.</p>
+        </div>
+        <span class="chevron">›</span>
+      </div>
+
+      <div class="report-card" onclick="openReportForm('missing')">
+        <div class="report-icon miss">🔍</div>
+        <div>
+          <h4>Report Missing Bike</h4>
+          <p>Bike not returned / missing</p>
+        </div>
+        <span class="chevron">›</span>
+      </div>
+
+      <div class="report-card" onclick="openReportForm('other')">
+        <div class="report-icon other">📝</div>
+        <div>
+          <h4>Other Issue</h4>
+          <p>Something else to flag</p>
+        </div>
+        <span class="chevron">›</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- REPORT FORM -->
+  <section class="screen" id="report-form">
+
+    <div class="header">
+      <button onclick="goTo('report')">←</button>
+      <h2 id="reportFormTitle">Report Damage</h2>
+    </div>
+
+    <div class="form-card">
+
+      <div class="input-group">
+        <label>Bike ID</label>
+        <input type="text" placeholder="e.g. RB-001" id="reportBikeId">
+      </div>
+
+      <div class="input-group">
+        <label>Description</label>
+        <textarea placeholder="Describe the issue..." rows="4" id="reportDesc"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label>Photo (optional)</label>
+        <div class="upload-box">
+          <input type="file" accept="image/*">
+        </div>
+      </div>
+
+      <button class="primary-btn" onclick="submitReport()">Submit Report</button>
+
+    </div>
+
+  </section>
+
+  <!-- RENTAL FORM -->
   <section class="screen" id="rental-form">
 
     <div class="header">
@@ -151,15 +325,12 @@
 
       <div class="input-group">
         <label>Upload ID</label>
-
         <div class="upload-box">
           <input type="file">
         </div>
       </div>
 
-      <button class="primary-btn" onclick="submitRental()">
-        Confirm Rental
-      </button>
+      <button class="primary-btn" onclick="submitRental()">Confirm Rental</button>
 
     </div>
 
@@ -170,42 +341,30 @@
 
     <div class="success-wrap">
 
-      <div class="success-icon">
-        ✓
-      </div>
+      <div class="success-icon">✓</div>
 
       <h2>Bike Assigned</h2>
 
-      <p class="success-text">
-        Bike 102 has been successfully rented.
-      </p>
+      <p class="success-text">Bike 102 has been successfully rented.</p>
 
       <div class="success-card">
-
         <div class="success-row">
           <span>Borrower</span>
           <b>Ashley Mendoza</b>
         </div>
-
         <div class="success-row">
           <span>Duration</span>
           <b>2 Hours</b>
         </div>
-
         <div class="success-row">
           <span>Total Fee</span>
           <b>₱120</b>
         </div>
-
       </div>
 
-      <div class="timer" id="timer">
-        02:00:00
-      </div>
+      <div class="timer" id="timer">02:00:00</div>
 
-      <button class="primary-btn" onclick="goTo('home')">
-        Return Home
-      </button>
+      <button class="primary-btn" onclick="goTo('home')">Return Home</button>
 
     </div>
 
@@ -215,20 +374,15 @@
 
 <!-- MODAL -->
 <div class="modal-bg" id="modalBg">
-
   <div class="modal-card">
-
     <div class="modal-handle"></div>
-
     <div id="modalContent"></div>
-
-    <button class="primary-btn" onclick="closeModal()">
-      Close
-    </button>
-
+    <button class="primary-btn" onclick="closeModal()">Close</button>
   </div>
-
 </div>
+
+<!-- REPORT SUCCESS TOAST -->
+<div class="toast" id="toast">✅ Report submitted!</div>
 
 <script src="script.js"></script>
 
