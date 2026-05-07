@@ -131,11 +131,18 @@ function openModal(type){
         View Borrower ID
       </button>
 
-      <div id="idContainer" style="display:none;">
+      <div id="idContainer" style="display:none; margin-top:15px;">
 
-        <img 
-        class="id-preview"
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop">
+        <div style="
+          background:#f5fbf8;
+          padding:30px;
+          border-radius:20px;
+          text-align:center;
+          color:#6f8d84;
+          font-size:14px;
+        ">
+          🪪 Borrower ID File Preview
+        </div>
 
       </div>
     `;
