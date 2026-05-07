@@ -1,0 +1,181 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RentaBike</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="desktopBlock">
+  <div class="desktopBox">
+    <h1>📱 Mobile Only</h1>
+    <p>
+      Girl this prototype only works on phones.<br>
+      Open it using your mobile device.
+    </p>
+  </div>
+</div>
+
+<div id="mobileApp">
+
+  <!-- SPLASH -->
+  <section class="screen active" id="home">
+    <div class="top">
+      <h1>🚴 RentaBike</h1>
+      <p>Energy Park Bicycle Rental</p>
+    </div>
+
+    <div class="card">
+      <h2>Available Bikes</h2>
+      <div class="bikeList">
+        <div class="bike available">Bike 101 • Available</div>
+        <div class="bike rented">Bike 102 • Rented</div>
+        <div class="bike available">Bike 103 • Available</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Rental Rates</h2>
+      <p>₱60 / hour</p>
+      <p>₱30 overtime fee</p>
+    </div>
+
+    <button onclick="goTo('scanner')">
+      Scan QR to Rent
+    </button>
+  </section>
+
+  <!-- QR SCANNER -->
+  <section class="screen" id="scanner">
+    <div class="header">
+      <button class="backBtn" onclick="goTo('home')">←</button>
+      <h2>QR Scanner</h2>
+    </div>
+
+    <div class="scannerBox">
+      <div class="scanLine"></div>
+      <p>Simulated QR Scanner</p>
+    </div>
+
+    <button onclick="fakeScan()">
+      Simulate QR Scan
+    </button>
+  </section>
+
+  <!-- RENTAL FORM -->
+  <section class="screen" id="form">
+    <div class="header">
+      <button class="backBtn" onclick="goTo('scanner')">←</button>
+      <h2>Rental Form</h2>
+    </div>
+
+    <div class="formGroup">
+      <label>Full Name</label>
+      <input type="text" placeholder="Enter your name">
+    </div>
+
+    <div class="formGroup">
+      <label>Rental Duration</label>
+      <select>
+        <option>1 Hour</option>
+        <option>2 Hours</option>
+        <option>3 Hours</option>
+      </select>
+    </div>
+
+    <div class="formGroup">
+      <label>Upload ID</label>
+      <input type="file">
+    </div>
+
+    <button onclick="submitRental()">
+      Confirm Rental
+    </button>
+  </section>
+
+  <!-- CONFIRMATION -->
+  <section class="screen" id="success">
+    <div class="successBox">
+      <div class="check">✅</div>
+
+      <h2>Rental Confirmed</h2>
+
+      <p>Bike Assigned: <b>Bike 101</b></p>
+      <p>Duration: <b>1 Hour</b></p>
+      <p>Total Fee: <b>₱60</b></p>
+
+      <div class="timer" id="timer">
+        01:00:00
+      </div>
+
+      <button onclick="goTo('dashboard')">
+        View Admin Dashboard
+      </button>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="screen" id="dashboard">
+    <div class="header">
+      <button class="backBtn" onclick="goTo('home')">←</button>
+      <h2>Admin Dashboard</h2>
+    </div>
+
+    <div class="stats">
+      <div class="statCard">
+        <h3>12</h3>
+        <p>Available Bikes</p>
+      </div>
+
+      <div class="statCard">
+        <h3>8</h3>
+        <p>Rented Bikes</p>
+      </div>
+
+      <div class="statCard">
+        <h3>3</h3>
+        <p>Overdue</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Bike Inventory</h2>
+
+      <div class="inventoryItem">
+        <span>Bike 101</span>
+        <span class="green">Available</span>
+      </div>
+
+      <div class="inventoryItem">
+        <span>Bike 102</span>
+        <span class="red">Rented</span>
+      </div>
+
+      <div class="inventoryItem">
+        <span>Bike 103</span>
+        <span class="yellow">Maintenance</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Reports & Analytics</h2>
+
+      <div class="graph">
+        <div class="bar"></div>
+        <div class="bar tall"></div>
+        <div class="bar medium"></div>
+        <div class="bar small"></div>
+      </div>
+
+      <p>Total Revenue: ₱12,450</p>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
