@@ -123,9 +123,21 @@ function openModal(type){
         <b>Active Rental</b>
       </div>
 
-      <img 
-      class="id-preview"
-      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop">
+      <button 
+        class="primary-btn"
+        onclick="toggleID()"
+        style="margin-top:10px;"
+      >
+        View Borrower ID
+      </button>
+
+      <div id="idContainer" style="display:none;">
+
+        <img 
+        class="id-preview"
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop">
+
+      </div>
     `;
 
   }
@@ -160,6 +172,22 @@ function openModal(type){
 function closeModal(){
 
   document.getElementById('modalBg').style.display = 'none';
+
+}
+
+function toggleID(){
+
+  const container = document.getElementById('idContainer');
+
+  if(container.style.display === 'none'){
+
+    container.style.display = 'block';
+
+  }else{
+
+    container.style.display = 'none';
+
+  }
 
 }
 
